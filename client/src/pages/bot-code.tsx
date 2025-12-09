@@ -437,6 +437,14 @@ if __name__ == "__main__":
         bot.run(token)
 `;
 
+const ENV_FILE = `# Discord Bot Token
+# Get this from https://discord.com/developers/applications
+DISCORD_TOKEN=your_token_here
+
+# Optional: Other configuration
+LOG_LEVEL=INFO
+COMMAND_PREFIX=/`;
+
 export default function BotCode() {
   const [copied, setCopied] = useState<string | null>(null);
 
@@ -494,6 +502,7 @@ export default function BotCode() {
           <TabsTrigger value="management" className="gap-2"><Users className="h-3 w-3" /> Roster</TabsTrigger>
           <TabsTrigger value="analytics" className="gap-2"><Activity className="h-3 w-3" /> Stats</TabsTrigger>
           <TabsTrigger value="help" className="gap-2"><Check className="h-3 w-3" /> Help</TabsTrigger>
+          <TabsTrigger value="env" className="gap-2"><Terminal className="h-3 w-3" /> Env Config</TabsTrigger>
         </TabsList>
         
         <div className="mt-4">
@@ -539,6 +548,15 @@ export default function BotCode() {
                 <strong>Help Module:</strong> Save as <code>cogs/help.py</code>. Lists all commands and usage examples.
               </div>
               <CodeBlock code={HELP_COG} filename="cogs/help.py" id="help" />
+            </div>
+          </TabsContent>
+
+          <TabsContent value="env">
+             <div className="space-y-4">
+              <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-sm text-red-200">
+                <strong>Configuration:</strong> You must create a file named <code>.env</code> in your server root or add these variables in your Pterodactyl "Variables" tab.
+              </div>
+              <CodeBlock code={ENV_FILE} filename=".env" id="env" />
             </div>
           </TabsContent>
         </div>

@@ -1,0 +1,57 @@
+[Pterodactyl Daemon]: Checking server disk space usage, this could take a few seconds...
+[Pterodactyl Daemon]: Updating process configuration files...
+[Pterodactyl Daemon]: Ensuring file permissions are set correctly, this could take a few seconds...
+container@pterodactyl~ Server marked as starting...
+[Pterodactyl Daemon]: Pulling Docker container image, this could take a few minutes to complete...
+[Pterodactyl Daemon]: Finished pulling Docker container image
+Python 3.11.14
+container~ if [[ -d .git ]] && [[ "${AUTO_UPDATE}" == "1" ]]; then git pull; fi; if [[ ! -z "${PY_PACKAGES}" ]]; then pip install -U --prefix .local ${PY_PACKAGES}; fi; if [[ -f /home/container/${REQUIREMENTS_FILE} ]]; then pip install -U --prefix .local -r ${REQUIREMENTS_FILE}; fi; /usr/local/bin/python /home/container/${PY_FILE}
+Requirement already satisfied: discord-py in ./.local/lib/python3.11/site-packages (2.6.4)
+Requirement already satisfied: asyncio in ./.local/lib/python3.11/site-packages (4.0.0)
+Requirement already satisfied: python-dotenv in ./.local/lib/python3.11/site-packages (1.2.1)
+Requirement already satisfied: aiohttp<4,>=3.7.4 in ./.local/lib/python3.11/site-packages (from discord-py) (3.11.7)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./.local/lib/python3.11/site-packages (from aiohttp<4,>=3.7.4->discord-py) (2.4.3)
+Requirement already satisfied: aiosignal>=1.1.2 in ./.local/lib/python3.11/site-packages (from aiohttp<4,>=3.7.4->discord-py) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./.local/lib/python3.11/site-packages (from aiohttp<4,>=3.7.4->discord-py) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./.local/lib/python3.11/site-packages (from aiohttp<4,>=3.7.4->discord-py) (1.5.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./.local/lib/python3.11/site-packages (from aiohttp<4,>=3.7.4->discord-py) (6.1.0)
+Requirement already satisfied: propcache>=0.2.0 in ./.local/lib/python3.11/site-packages (from aiohttp<4,>=3.7.4->discord-py) (0.2.0)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in ./.local/lib/python3.11/site-packages (from aiohttp<4,>=3.7.4->discord-py) (1.18.0)
+Requirement already satisfied: idna>=2.0 in ./.local/lib/python3.11/site-packages (from yarl<2.0,>=1.17.0->aiohttp<4,>=3.7.4->discord-py) (3.10)
+[notice] A new release of pip is available: 24.0 -> 25.3
+[notice] To update, run: pip install --upgrade pip
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+ERROR:discord:No DISCORD_TOKEN found in environment variables
+container@pterodactyl~ Server marked as offline...
+[Pterodactyl Daemon]: ---------- Detected server process in a crashed state! ----------
+[Pterodactyl Daemon]: Exit code: 0
+[Pterodactyl Daemon]: Out of memory: false
+[Pterodactyl Daemon]: Checking server disk space usage, this could take a few seconds...
+[Pterodactyl Daemon]: Updating process configuration files...
+[Pterodactyl Daemon]: Ensuring file permissions are set correctly, this could take a few seconds...
+container@pterodactyl~ Server marked as starting...
+[Pterodactyl Daemon]: Pulling Docker container image, this could take a few minutes to complete...
+[Pterodactyl Daemon]: Finished pulling Docker container image
+Python 3.11.14
+container~ if [[ -d .git ]] && [[ "${AUTO_UPDATE}" == "1" ]]; then git pull; fi; if [[ ! -z "${PY_PACKAGES}" ]]; then pip install -U --prefix .local ${PY_PACKAGES}; fi; if [[ -f /home/container/${REQUIREMENTS_FILE} ]]; then pip install -U --prefix .local -r ${REQUIREMENTS_FILE}; fi; /usr/local/bin/python /home/container/${PY_FILE}
+Requirement already satisfied: discord-py in ./.local/lib/python3.11/site-packages (2.6.4)
+Requirement already satisfied: asyncio in ./.local/lib/python3.11/site-packages (4.0.0)
+Requirement already satisfied: python-dotenv in ./.local/lib/python3.11/site-packages (1.2.1)
+Requirement already satisfied: aiohttp<4,>=3.7.4 in ./.local/lib/python3.11/site-packages (from discord-py) (3.11.7)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./.local/lib/python3.11/site-packages (from aiohttp<4,>=3.7.4->discord-py) (2.4.3)
+Requirement already satisfied: aiosignal>=1.1.2 in ./.local/lib/python3.11/site-packages (from aiohttp<4,>=3.7.4->discord-py) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./.local/lib/python3.11/site-packages (from aiohttp<4,>=3.7.4->discord-py) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./.local/lib/python3.11/site-packages (from aiohttp<4,>=3.7.4->discord-py) (1.5.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./.local/lib/python3.11/site-packages (from aiohttp<4,>=3.7.4->discord-py) (6.1.0)
+Requirement already satisfied: propcache>=0.2.0 in ./.local/lib/python3.11/site-packages (from aiohttp<4,>=3.7.4->discord-py) (0.2.0)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in ./.local/lib/python3.11/site-packages (from aiohttp<4,>=3.7.4->discord-py) (1.18.0)
+Requirement already satisfied: idna>=2.0 in ./.local/lib/python3.11/site-packages (from yarl<2.0,>=1.17.0->aiohttp<4,>=3.7.4->discord-py) (3.10)
+[notice] A new release of pip is available: 24.0 -> 25.3
+[notice] To update, run: pip install --upgrade pip
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+ERROR:discord:No DISCORD_TOKEN found in environment variables
+container@pterodactyl~ Server marked as offline...
+[Pterodactyl Daemon]: ---------- Detected server process in a crashed state! ----------
+[Pterodactyl Daemon]: Exit code: 0
+[Pterodactyl Daemon]: Out of memory: false
+[Pterodactyl Daemon]: Aborting automatic restart, last crash occurred less than 60 seconds ago.
