@@ -420,6 +420,15 @@ class Help(commands.Cog):
                 color=discord.Color.blue()
             )
 
+            # Web Dashboard
+            embed.add_field(
+                name="🌐 Web Dashboard",
+                value="""
+                \`/dashboard\` - Get the link to the web interface for rosters & trade simulation.
+                """,
+                inline=False
+            )
+
             # Roster Management
             embed.add_field(
                 name="🛡️ Roster Management",
@@ -463,6 +472,19 @@ class Help(commands.Cog):
         except Exception as e:
             logger.error(f"Error in help command: {str(e)}")
             await interaction.followup.send("An error occurred displaying help.", ephemeral=True)
+
+    @app_commands.command(
+        name="dashboard",
+        description="Get the link to the web dashboard and trade simulator"
+    )
+    async def dashboard(self, interaction: discord.Interaction):
+        # REPLACE THIS URL with your actual deployed website URL from Vercel/Cloudflare
+        dashboard_url = "https://your-league-dashboard.vercel.app"
+        
+        await interaction.response.send_message(
+            f"🌟 **League Dashboard**\\nUse the web interface to view rosters and simulate trades:\\n{dashboard_url}", 
+            ephemeral=True
+        )
 
 async def setup(bot):
     await bot.add_cog(Help(bot))
