@@ -313,6 +313,80 @@ async def setup(bot):
     await bot.add_cog(TeamManagement(bot))
 `;
 
+const HELP_COG = `import discord
+from discord.ext import commands
+from discord import app_commands
+import logging
+import asyncio
+
+logger = logging.getLogger('discord')
+
+class Help(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+
+    @app_commands.command(
+        name="help",
+        description="Show all available commands organized by category"
+    )
+    async def help(self, interaction: discord.Interaction):
+        try:
+            await interaction.response.defer()
+            
+            embed = discord.Embed(
+                title="📚 League Manager Bot Help",
+                description="Here are all available commands:",
+                color=discord.Color.blue()
+            )
+
+            # Roster Management
+            embed.add_field(
+                name="🛡️ Roster Management",
+                value="""
+                \`/view-team [team_name]\` - View roster capacity and player list.
+                \`/list-players [team_name]\` - List all players in a team.
+                \`/create-team [name] [max_size]\` - Create a new franchise.
+                \`/add-player [team] [name] [id]\` - Add a player to a roster.
+                \`/remove-player [team] [id]\` - Remove a player from a roster.
+                """,
+                inline=False
+            )
+
+            # Trading System
+            embed.add_field(
+                name="🔄 Smart Trading",
+                value="""
+                \`/propose-trade [target] [offer_ids] [request_ids]\`
+                Trade players between teams. Supports multiple players (comma-separated).
+                Example: \`/propose-trade TeamB p1,p2 p3,p4\`
+                
+                \`/trade-history [limit]\`
+                View a visual timeline of recent league transactions.
+                """,
+                inline=False
+            )
+
+            # Analytics
+            embed.add_field(
+                name="📊 Analytics",
+                value="""
+                \`/league-stats\`
+                View real-time league statistics, trade volume, and top rosters.
+                """,
+                inline=False
+            )
+
+            embed.set_footer(text="Bot developed for Wispbyte Server")
+            await interaction.followup.send(embed=embed)
+
+        except Exception as e:
+            logger.error(f"Error in help command: {str(e)}")
+            await interaction.followup.send("An error occurred displaying help.", ephemeral=True)
+
+async def setup(bot):
+    await bot.add_cog(Help(bot))
+`;
+
 const MAIN_PY = `import discord
 from discord.ext import commands
 import os
@@ -335,7 +409,8 @@ async def load_extensions():
     extensions = [
         'cogs.team_management',
         'cogs.trading',
-        'cogs.analytics'
+        'cogs.analytics',
+        'cogs.help'
     ]
     for ext in extensions:
         try:
@@ -418,6 +493,7 @@ export default function BotCode() {
           <TabsTrigger value="trading" className="gap-2"><ArrowRightLeft className="h-3 w-3" /> Trading</TabsTrigger>
           <TabsTrigger value="management" className="gap-2"><Users className="h-3 w-3" /> Roster</TabsTrigger>
           <TabsTrigger value="analytics" className="gap-2"><Activity className="h-3 w-3" /> Stats</TabsTrigger>
+          <TabsTrigger value="help" className="gap-2"><Check className="h-3 w-3" /> Help</TabsTrigger>
         </TabsList>
         
         <div className="mt-4">
@@ -454,6 +530,15 @@ export default function BotCode() {
                 <strong>Analytics Module:</strong> Save as <code>cogs/analytics.py</code>. Powering the /league-stats command.
               </div>
               <CodeBlock code={ANALYTICS_COG} filename="cogs/analytics.py" id="analytics" />
+            </div>
+          </TabsContent>
+
+          <TabsContent value="help">
+             <div className="space-y-4">
+              <div className="p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-sm text-cyan-200">
+                <strong>Help Module:</strong> Save as <code>cogs/help.py</code>. Lists all commands and usage examples.
+              </div>
+              <CodeBlock code={HELP_COG} filename="cogs/help.py" id="help" />
             </div>
           </TabsContent>
         </div>
