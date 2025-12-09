@@ -48,10 +48,14 @@ export default function TradeSimulator() {
 
     if (errors.length > 0) return { type: 'error' as const, messages: errors };
     
+    // Generate the exact Discord command string
+    const commandString = `/propose-trade target_team:${team2.name} offer_player_ids:${team1SelectedPlayers.join(',')} request_player_ids:${team2SelectedPlayers.join(',')}`;
+
     return { 
       type: 'success' as const, 
       message: 'Trade is valid!',
-      details: `Trading ${team1SelectedPlayers.length} players from ${team1.name} for ${team2SelectedPlayers.length} players from ${team2.name}`
+      details: `Trading ${team1SelectedPlayers.length} players from ${team1.name} for ${team2SelectedPlayers.length} players from ${team2.name}`,
+      command: commandString
     };
   };
 
@@ -176,11 +180,14 @@ export default function TradeSimulator() {
                 {status.messages?.map((m, i) => <li key={i}>{m}</li>)}
               </ul>
             ) : (
-              <div className="flex flex-col gap-2 mt-2">
+              <div className="flex flex-col gap-4 mt-2">
                 <p>{status.details}</p>
-                <Button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white border-none mt-2">
-                  Generate Discord Command
-                </Button>
+                <div className="space-y-2">
+                  <p className="text-xs font-mono uppercase text-muted-foreground">Run this command in Discord:</p>
+                  <div className="bg-black/40 p-3 rounded font-mono text-sm break-all border border-border/50 select-all">
+                    {status.command}
+                  </div>
+                </div>
               </div>
             )}
           </AlertDescription>
