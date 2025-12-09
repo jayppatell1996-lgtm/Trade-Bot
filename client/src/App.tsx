@@ -6,6 +6,7 @@ import TradeSimulator from "@/pages/trade-simulator";
 import TradeHistory from "@/pages/trade-history";
 import NotFound from "@/pages/not-found";
 import BotCode from "@/pages/bot-code";
+import { Toaster } from "@/components/ui/toaster";
 
 function App() {
   return (
