@@ -49,7 +49,7 @@ export default function TradeSimulator() {
     if (errors.length > 0) return { type: 'error' as const, messages: errors };
     
     // Generate the exact Discord command string
-    const commandString = `/propose-trade target_team:${team2.name} offer_player_ids:${team1SelectedPlayers.join(',')} request_player_ids:${team2SelectedPlayers.join(',')}`;
+    const commandString = `!trade ${team2.name} ${team1SelectedPlayers.join(',')} ${team2SelectedPlayers.join(',')}`;
 
     return { 
       type: 'success' as const, 

@@ -146,6 +146,87 @@ class Trading(commands.Cog):
         offer_player_ids: str,
         request_player_ids: str
     ):
+        await self._handle_trade(interaction, target_team, offer_player_ids, request_player_ids)
+
+    @commands.command(name="trade")
+    async def trade_prefix(self, ctx, target_team: str, offer_player_ids: str, request_player_ids: str):
+        """
+        Text-based trade command for easy copy-pasting.
+        Usage: !trade TeamB p1,p2 p3,p4
+        """
+        # Create a fake interaction-like object or handle logic directly
+        # For simplicity, we'll just reuse the logic but we need to adapt the response method
+        await self._handle_trade_text(ctx, target_team, offer_player_ids, request_player_ids)
+
+    async def _handle_trade_text(self, ctx, target_team, offer_player_ids, request_player_ids):
+        # Wrapper for text commands
+        try:
+            # Parse IDs
+            offer_ids = [pid.strip() for pid in offer_player_ids.split(',') if pid.strip()]
+            request_ids = [pid.strip() for pid in request_player_ids.split(',') if pid.strip()]
+
+            # Basic Validation
+            if not offer_ids or not request_ids:
+                await ctx.send("❌ You must offer and request at least one player.")
+                return
+            
+            if len(offer_ids) > 5 or len(request_ids) > 5:
+                await ctx.send("❌ Cannot trade more than 5 players per side.")
+                return
+
+            # Execute Trade Logic
+            proposing_team = self.data_manager.get_team_by_owner(ctx.author.id)
+            if not proposing_team:
+                await ctx.send("❌ You don't own a team!")
+                return
+                
+            target_team_data = self.data_manager.get_team_by_name(target_team)
+            if not target_team_data:
+                await ctx.send(f"❌ Target team '{target_team}' not found!")
+                return
+
+            success, message = self.data_manager.execute_propose_trade(
+                proposing_team['name'],
+                target_team_data['name'],
+                offer_ids,
+                request_ids
+            )
+
+            if success:
+                embed = discord.Embed(
+                    title="✅ Trade Completed Successfully",
+                    description=f"Transaction between **{proposing_team['name']}** and **{target_team_data['name']}**",
+                    color=discord.Color.green()
+                )
+                
+                embed.add_field(
+                    name=f"📤 {proposing_team['name']} Sent",
+                    value="\\n".join([f"• {pid}" for pid in offer_ids]),
+                    inline=True
+                )
+                
+                embed.add_field(
+                    name=f"📥 {target_team_data['name']} Sent",
+                    value="\\n".join([f"• {pid}" for pid in request_ids]),
+                    inline=True
+                )
+                
+                embed.set_footer(text="Rosters have been updated automatically.")
+                await ctx.send(embed=embed)
+            else:
+                await ctx.send(f"❌ Trade Failed: {message}")
+
+        except Exception as e:
+            logger.error(f"Error in trade_prefix: {str(e)}")
+            await ctx.send("An unexpected error occurred.")
+
+    async def _handle_trade(
+        self,
+        interaction: discord.Interaction,
+        target_team: str,
+        offer_player_ids: str,
+        request_player_ids: str
+    ):
         try:
             await interaction.response.defer()
 
