@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TEAMS_DATA, TRADE_HISTORY } from "@/lib/mockData";
-import { Users, ArrowRightLeft, TrendingUp, Activity } from "lucide-react";
+import { Users, ArrowRightLeft, TrendingUp, Activity, Code } from "lucide-react";
+import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
 import {
   BarChart,
   Bar,
@@ -39,9 +41,17 @@ export default function Dashboard() {
     <div className="space-y-6 animate-in fade-in duration-500">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold tracking-tight">League Overview</h1>
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <span className="inline-block h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-          System Online
+        <div className="flex items-center gap-4">
+           <Link href="/bot-code">
+            <Button variant="outline" className="gap-2 border-primary/50 text-primary hover:bg-primary/10">
+              <Code className="h-4 w-4" />
+              Get Bot Code
+            </Button>
+          </Link>
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <span className="inline-block h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+            System Online
+          </div>
         </div>
       </div>
 

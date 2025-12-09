@@ -5,7 +5,7 @@ import Teams from "@/pages/teams";
 import TradeSimulator from "@/pages/trade-simulator";
 import TradeHistory from "@/pages/trade-history";
 import NotFound from "@/pages/not-found";
-import { Toaster } from "@/components/ui/toaster";
+import BotCode from "@/pages/bot-code";
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
           <Route path="/teams" component={Teams} />
           <Route path="/trade" component={TradeSimulator} />
           <Route path="/history" component={TradeHistory} />
+          <Route path="/bot-code" component={BotCode} />
           <Route component={NotFound} />
         </Switch>
       </main>
